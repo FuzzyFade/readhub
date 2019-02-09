@@ -1,8 +1,9 @@
 <template>
-    <v-layout row wrap>
+    <v-layout row wrap style="margin-bottom: 2em">
         <v-hover>
             <v-card slot-scope="{ hover }"
-                    :class="`elevation-${hover ? 12 : 2}`">
+                    :class="`elevation-${hover ? 12 : 2}`"
+            >
                 <v-list>
                     <v-list-tile>
                         <div class="headline">
@@ -57,11 +58,10 @@
 <style lang="stylus" scoped>
     .timer
         color #7a7a7a
-        letter-spacing 1.4px
-        margin-left 15px
+        letter-spacing .6px
+        margin-left 19px
         font-weight 400
         font-size 14px
-        float right
     .content
         padding 10px 16px 10px 16px
         .text

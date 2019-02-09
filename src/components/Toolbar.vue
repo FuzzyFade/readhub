@@ -1,5 +1,6 @@
 <template>
-    <v-toolbar>
+    <v-toolbar style="position: fixed;z-index:1"
+    >
         <v-toolbar-title @click="change('/')">
             <img src="https://cdn.readhub.cn/static/assets/png/readhub_logo@2x.e5b95388.png">
         </v-toolbar-title>

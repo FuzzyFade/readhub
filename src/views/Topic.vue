@@ -2,6 +2,14 @@
     <v-app>
         <toolbar></toolbar>
         <v-container fluid grid-list-lg>
+            <div style="height: 54px"></div>
+            <articles></articles>
+            <articles></articles>
+            <articles></articles>
+            <articles></articles>
+            <articles></articles>
+            <articles></articles>
+            <articles></articles>
             <articles></articles>
         </v-container>
     </v-app>
@@ -16,6 +24,12 @@
         components: {
             Toolbar,
             Articles
+        },
+        methods:{
+
         }
     }
 </script>
+
+<style lang="stylus" scoped>
+</style>
