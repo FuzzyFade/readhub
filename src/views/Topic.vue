@@ -10,7 +10,7 @@
 <script>
     import Toolbar from '@/components/Toolbar.vue'
     import Articles from '@/components/Articles.vue'
-
+    import axios from 'axios'
     export default {
         name: 'Topic',
         components: {
