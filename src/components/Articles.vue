@@ -6,7 +6,7 @@
             >
                 <v-list>
                     <v-list-tile>
-                        <div class="headline">
+                        <div class="tile">
                             马化腾出席“数字中国” 腾讯众创空间助力“数字福建”建设
                         </div>
                         <span class="timer">2小时以前</span>
@@ -56,6 +56,9 @@
 </script>
 
 <style lang="stylus" scoped>
+    .tile
+        font-size 20px
+        letter-spacing 1.2px
     .timer
         color #7a7a7a
         letter-spacing .6px
