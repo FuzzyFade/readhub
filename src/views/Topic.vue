@@ -1,18 +1,21 @@
 <template>
-  <toolbar></toolbar>
-  <articles></articles>
+    <v-app>
+        <toolbar></toolbar>
+        <v-container fluid grid-list-lg>
+            <articles></articles>
+        </v-container>
+    </v-app>
 </template>
 
 <script>
-// @ is an alias to /src
-import Toolbar from '@/components/Toolbar.vue'
-import Articles from '@/components/Articles.vue'
+    import Toolbar from '@/components/Toolbar.vue'
+    import Articles from '@/components/Articles.vue'
 
-export default {
-  name: 'Topic',
-  components: {
-    Toolbar,
-    Articles
-  }
-}
+    export default {
+        name: 'Topic',
+        components: {
+            Toolbar,
+            Articles
+        }
+    }
 </script>
