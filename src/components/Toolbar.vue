@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar style="position: fixed;z-index:1"
+    <v-toolbar color="#fff" style="position: fixed;z-index:1"
     >
         <v-toolbar-title @click="change('/')">
             <img src="https://cdn.readhub.cn/static/assets/png/readhub_logo@2x.e5b95388.png">
@@ -11,6 +11,7 @@
                    :key="item.id"
                    v-html="item.content"
                    @click="change(item.position)"
+                   :color="button_color(item.if_now)"
             >
             </v-btn>
         </v-toolbar-items>
@@ -56,9 +57,9 @@
             },
             button_color(n) {
                 if (n){
-                    return "#2e2e2e"
+                    return "blue"
                 }else {
-                    return "white"
+                    return "#2e2e2e"
                 }
             }
         }
@@ -68,5 +69,5 @@
 <style lang="stylus" scoped>
     @import '~vuetify/src/stylus/main'
     img
-        width 150px
+        width 140px
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <v-layout row wrap style="margin-bottom: 2em">
+    <v-layout row wrap style="margin-bottom: 1.8em">
         <v-hover>
             <v-card slot-scope="{ hover }"
                     :class="`elevation-${hover ? 12 : 2}`"
@@ -18,12 +18,11 @@
                         </a>
                     </div>
                     <div class="link" v-if="show">
-                        <div>
                             <a class="text_link" href="http://tech.sina.com.cn/digi/2019-02-09/doc-ihrfqzka4501673.shtml">
                                 LinkedIn网站揭示：微软正重构Windows组件以支持下一代产品
                             </a>
                             <span class="sitename">新浪科技</span>
-                        </div>
+                            <span class="details">查看详情</span>
                     </div>
                 </v-list>
             </v-card>
@@ -88,6 +87,13 @@
             color #5e788f
         .sitename
             color #a9a9a9
+            letter-spacing 1px
+            margin-left 15px
+            font-weight 400
+            font-size 14px
+        .details
+            float right
+            color #303030
             letter-spacing 1px
             margin-left 15px
             font-weight 400
