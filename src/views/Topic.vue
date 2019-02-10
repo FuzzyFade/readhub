@@ -4,15 +4,12 @@
         <v-container fluid grid-list-lg>
             <div style="height: 60px"></div>
             <articles :title="item.title"
-                      :time="'时间'"
+                      :time="get_time(item.updatedAt)"
                       :detail="item.summary"
-                      :link_title="item.newsArray[0].title"
-                      :link="item.newsArray[0].url"
-                      :site="item.newsArray[0].siteName"
+                      :site_list="item.newsArray"
                       v-for="item in info.data"
                       :key="item.id"
             ></articles>
-            <
             <backtop></backtop>
         </v-container>
     </v-app>
@@ -20,6 +17,7 @@
 
 <script>
     import axios from 'axios'
+    import { format } from 'timeago.js'
     import Toolbar from '@/components/Toolbar.vue'
     import Articles from '@/components/Articles.vue'
     import Backtop from '@/components/Backtop.vue'
@@ -46,8 +44,13 @@
                 if (res){
                     this.info = res.data
                 }else{
-                    //404
+                    console.log(404)
                 }
+            },
+            get_time(time) {
+                let d = new Date(time);
+                time = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+                return format(time,'zh_CN');
             }
         },
     }

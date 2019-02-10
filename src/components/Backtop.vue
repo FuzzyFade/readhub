@@ -18,8 +18,8 @@
     export default {
         name: "Backtop",
 
-        mounted (){
-            window.addEventListener('scroll', this.get_scroll)
+        created (){
+            window.addEventListener('scroll', this.get_scroll);
         },
 
         data:()=>({

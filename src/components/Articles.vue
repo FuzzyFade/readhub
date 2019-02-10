@@ -15,10 +15,15 @@
                         </a>
                     </div>
                     <div class="link" v-if="show">
-                            <a class="text_link" :href="link" v-html="link_title">
+                        <div style="padding-bottom: 8px"
+                             v-for="item of site_list"
+                             :key="item.id"
+                        >
+                            <a class="text_link" :href="item.link" v-html="'· '+item.title">
                             </a>
-                            <span class="sitename" v-html="site"></span>
-                            <span class="details">查看详情</span>
+                            <span class="sitename" v-html="item.siteName"></span>
+                        </div>
+                        <span class="details">查看详情</span>
                     </div>
                 </v-list>
             </v-card>
@@ -33,9 +38,7 @@
             title : String,
             time : String,
             detail : String,
-            link_title : String,
-            link : String,
-            site : String,
+            site_list : [],
         },
         data:()=>({
             show:false,
@@ -89,7 +92,7 @@
         .text_link
             color rgba(0, 0, 0, 1)
             letter-spacing 1.3px
-            font-size 13px
+            font-size 14px
         .text_link:hover
             color #5e788f
         .sitename
@@ -103,6 +106,7 @@
             color #303030
             letter-spacing 1px
             margin-left 15px
+            margin-bottom 12px
             font-weight 400
             font-size 14px
 
