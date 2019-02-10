@@ -2,8 +2,16 @@
     <v-app>
         <toolbar></toolbar>
         <v-container fluid grid-list-lg>
-            <div style="height: 47px"></div>
-            <articles v-for="item of "></articles>
+            <div style="height: 60px"></div>
+            <articles :title="item.title"
+                      :time="'时间'"
+                      :detail="item.summary"
+                      :link_title="item.newsArray[0].title"
+                      :link="item.newsArray[0].url"
+                      :site="item.newsArray[0].siteName"
+                      v-for="item in info.data"
+                      :key="item.id"
+            ></articles>
         </v-container>
     </v-app>
 </template>
@@ -19,9 +27,9 @@
             Articles
         },
         data:()=>({
-            Info :null
+            info:''
         }),
-        mounted () {
+        mounted() {
             this.getArticleInfo()
         },
         methods:{
@@ -31,10 +39,13 @@
                     .then(this.ArtInfoSucc)
             },
             ArtInfoSucc(res) {
+                if (res){
+                    this.info = res.data
+                }else{
 
-                console.log(res)
+                }
             }
-        }
+        },
     }
 </script>
 
