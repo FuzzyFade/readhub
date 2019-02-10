@@ -19,9 +19,7 @@
         name: "Backtop",
 
         mounted (){
-            this.$nextTick(function() {
-                window.addEventListener('scroll', this.get_scroll)
-            })
+            window.addEventListener('scroll', this.get_scroll)
         },
 
         data:()=>({
