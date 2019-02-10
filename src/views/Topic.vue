@@ -12,6 +12,7 @@
                       v-for="item in info.data"
                       :key="item.id"
             ></articles>
+            <backtop></backtop>
         </v-container>
     </v-app>
 </template>
@@ -20,11 +21,13 @@
     import axios from 'axios'
     import Toolbar from '@/components/Toolbar.vue'
     import Articles from '@/components/Articles.vue'
+    import Backtop from '@/components/Backtop.vue'
     export default {
         name: 'Topic',
         components: {
             Toolbar,
-            Articles
+            Articles,
+            Backtop
         },
         data:()=>({
             info:''
@@ -42,7 +45,7 @@
                 if (res){
                     this.info = res.data
                 }else{
-
+                    //404
                 }
             }
         },
