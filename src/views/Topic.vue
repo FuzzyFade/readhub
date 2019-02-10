@@ -2,8 +2,8 @@
     <v-app>
         <toolbar></toolbar>
         <v-container fluid grid-list-lg>
-            <div style="height: 61px"></div>
-            <articles></articles>
+            <div style="height: 47px"></div>
+            <articles v-for="item of "></articles>
         </v-container>
     </v-app>
 </template>
@@ -19,6 +19,7 @@
             Articles
         },
         data:()=>({
+            Info :null
         }),
         mounted () {
             this.getArticleInfo()
@@ -30,6 +31,7 @@
                     .then(this.ArtInfoSucc)
             },
             ArtInfoSucc(res) {
+
                 console.log(res)
             }
         }
