@@ -29,15 +29,22 @@
             Backtop
         },
         data:()=>({
-            info:''
+            info:'',
+            opening: false,
         }),
         mounted() {
+            console.log(document.body.offsetHeight);
             this.getArticleInfo();
         },
         methods:{
             getArticleInfo() {
                 axios
                     .get('/api/topic')
+                    .then(this.ArtInfoSucc)
+            },
+            getArticleNext() {
+                axios
+                    .get('/api/topic/')
                     .then(this.ArtInfoSucc)
             },
             ArtInfoSucc(res) {

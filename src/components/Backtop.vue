@@ -7,7 +7,7 @@
                right
                bottom
                style="position: fixed;z-index:1"
-               @click="back_top"
+               @click="$vuetify.goTo(0, vuetify_goTo_options)"
         >
             <v-icon>keyboard_arrow_up</v-icon>
         </v-btn>
@@ -18,18 +18,21 @@
     export default {
         name: "Backtop",
 
-        created (){
-            window.addEventListener('scroll', this.get_scroll);
-        },
-
         data:()=>({
             hidden:true,
         }),
 
+        created (){
+            window.addEventListener('scroll', this.get_scroll);
+        },
+
         methods:{
-            back_top() {
-                document.documentElement.scrollTop = 0;
-                document.body.scrollTop = 0;
+            vuetify_goTo_options () {
+                return {
+                    duration: 700,
+                    offset: 128,
+                    easing: easeInOutCubic(),
+                }
             },
 
             get_scroll() {
