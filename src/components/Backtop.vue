@@ -28,12 +28,13 @@
 
         methods:{
             back_top() {
-                document.documentElement.scrollTop = 0
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
             },
 
             get_scroll() {
-                let scroll = document.documentElement.scrollTop;
-                let height = document.documentElement.clientHeight;
+                let scroll = document.documentElement.scrollTop || document.body.scrollTop;
+                let height = document.documentElement.clientHeight ||document.body.clientHeight;
                 scroll > height ? this.hidden = false
                     : this.hidden = true
 
