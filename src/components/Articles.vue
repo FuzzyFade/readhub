@@ -3,6 +3,7 @@
         <v-hover>
             <v-card slot-scope="{ hover }"
                     :class="`elevation-${hover ? 12 : 2}`"
+                    max-width="100%"
             >
                 <v-list>
                     <v-list-tile>
@@ -11,16 +12,14 @@
                     </v-list-tile>
                     <v-divider></v-divider>
                     <div class="content" @click="show_text">
-                        <a class="text" :style="{'-webkit-line-clamp': clamp}" v-html="detail">
-                        </a>
+                        <a class="text" :style="{'-webkit-line-clamp': clamp}" v-html="detail"></a>
                     </div>
                     <div class="link" v-if="show">
-                        <div style="padding-bottom: 8px"
+                        <div class="little_title"
                              v-for="item of site_list"
                              :key="item.id"
                         >
-                            <a class="text_link" :href="item.link" v-html="'· '+item.title">
-                            </a>
+                            <a class="text_link" :href="item.link" v-html="'· '+item.title"></a>
                             <span class="sitename" v-html="item.siteName"></span>
                         </div>
                         <span class="details">查看详情</span>
@@ -38,7 +37,7 @@
             title : String,
             time : String,
             detail : String,
-            site_list : [],
+            site_list : Array,
         },
         data:()=>({
             show:false,
@@ -55,20 +54,19 @@
                 }
             }
         },
-        computed:{
-            gettime(time){
-                var now = Date.parse(new Date())/1000;
-
-            }
-        }
     }
 </script>
 
 <style lang="stylus" scoped>
     .tile
+        max-width 100%
+        overflow: hidden
+        text-overflow:ellipsis
+        white-space: nowrap;
         font-size 20px
         letter-spacing 1.2px
     .timer
+        width:100px;
         color #7a7a7a
         letter-spacing .6px
         margin-left 19px
@@ -79,7 +77,7 @@
         .text
             font-size 15px
             color #515151
-            letter-spacing 2.8px
+            letter-spacing 2.1px
             overflow: hidden
             text-overflow: ellipsis
             display: -webkit-box
@@ -89,18 +87,23 @@
             color #000
     .link
         padding 14px 16px 16px 16px
-        .text_link
-            color rgba(0, 0, 0, 1)
-            letter-spacing 1.3px
-            font-size 14px
-        .text_link:hover
-            color #5e788f
-        .sitename
-            color #a9a9a9
-            letter-spacing 1px
-            margin-left 15px
-            font-weight 400
-            font-size 14px
+        .little_title
+            overflow hidden
+            max-width 100%
+            margin-bottom  8px
+            .text_link
+                color rgba(0, 0, 0, 1)
+                letter-spacing 1.3px
+                font-size 14px
+            .text_link:hover
+                color #5e788f
+            .sitename
+                display inline-block
+                color #a9a9a9
+                letter-spacing 1px
+                margin-left 15px
+                font-weight 400
+                font-size 14px
         .details
             float right
             color #303030

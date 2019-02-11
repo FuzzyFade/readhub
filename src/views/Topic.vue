@@ -32,7 +32,7 @@
             info:''
         }),
         mounted() {
-            this.getArticleInfo()
+            this.getArticleInfo();
         },
         methods:{
             getArticleInfo() {
