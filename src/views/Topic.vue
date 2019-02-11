@@ -4,7 +4,7 @@
         <v-container fluid grid-list-lg>
             <div style="height: 60px"></div>
             <articles :title="item.title"
-                      :time="get_time(item.updatedAt)"
+                      :time="get_time(item.createdAt)"
                       :detail="item.summary"
                       :site_list="item.newsArray"
                       v-for="item in info.data"
@@ -30,7 +30,10 @@
         },
         data:()=>({
             info:'',
-            opening: false,
+            request: {
+                lastCursor:'',
+                pageSize:13,
+            }
         }),
         mounted() {
             console.log(document.body.offsetHeight);
@@ -39,7 +42,7 @@
         methods:{
             getArticleInfo() {
                 axios
-                    .get('/api/topic')
+                    .get('/api/topic?pageSize=' + this.request.pageSize+ '&lastCursor=' + this.request.lastCursor)
                     .then(this.ArtInfoSucc)
             },
             getArticleNext() {
