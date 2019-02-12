@@ -36,9 +36,9 @@
             },
 
             get_scroll() {
-                let scroll = document.documentElement.scrollTop || document.body.scrollTop;
+                let scroll_top = document.documentElement.scrollTop || document.body.scrollTop;
                 let height = document.documentElement.clientHeight ||document.body.clientHeight;
-                scroll > height ? this.hidden = false
+                scroll_top > height ? this.hidden = false
                     : this.hidden = true
 
             }

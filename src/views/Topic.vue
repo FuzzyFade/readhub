@@ -8,7 +8,7 @@
                           :time="get_time(item.createdAt)"
                           :detail="item.summary"
                           :site_list="item.newsArray"
-                          v-for="item in info.data"
+                          v-for="item in info"
                           :key="item.id"
                 ></articles>
             </div>
@@ -30,45 +30,40 @@
             Articles,
             Backtop
         },
-        data:()=>({
-            info:'',
+        data:() => ({
+            api_path:'/api/topic',
+            info:[],
             request: {
                 lastCursor:'',
                 pageSize:20,
-            }
+            },
         }),
-        created (){
+        mounted () {
+            this.get_article_info();
             window.addEventListener('scroll', this.get_scroll);
         },
-        mounted() {
-            this.getArticleInfo();
+        beforeDestroy () {
+            window.removeEventListener('scroll', this.get_scroll);
         },
         methods:{
-            getArticleInfo() {
-                axios
-                    .get('/api/topic?pageSize=' + this.request.pageSize + '&lastCursor=' + this.request.lastCursor)
-                    .then(this.ArtInfoSucc)
-            },
             get_scroll() {
-                let scroll = document.documentElement.scrollTop || document.body.scrollTop;
-                let height = document.documentElement.clientHeight ||document.body.clientHeight;
-
+                let scroll_top = document.documentElement.scrollTop || document.body.scrollTop;
+                let height = document.documentElement.clientHeight || document.body.clientHeight;
+                let scroll_height = document.documentElement.scrollHeight || document.body.scrollHeight;
+                scroll_top + height === scroll_height && this.get_article_info()
             },
-            lazyload() {
-                let last_id = this.info.data[0].order;
+            get_article_info() {
                 axios
-                    .get('/api/topic?pageSize=' + this.request.pageSize + '&lastCursor=' + last_id)
-
+                    .get(this.api_path + '?' + 'pageSize=' + this.request.pageSize + '&lastCursor=' + this.request.lastCursor)
+                    .then(this.get_data)
+                    .catch(error => console.log(error))
             },
-
-            ArtInfoSucc(res) {
-                if (res){
-                    this.info = res.data
-                }else{
-                    console.log(404)
+            get_data(res) {
+                if (res.status === 200) {
+                    this.info = this.info.concat(res.data.data);
+                    this.request.lastCursor = res.data.data[19].order
                 }
             },
-
             get_time(time) {
                 let d = new Date(time);
                 time = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();

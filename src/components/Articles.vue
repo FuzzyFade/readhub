@@ -19,7 +19,7 @@
                              v-for="item of site_list"
                              :key="item.id"
                         >
-                            <a class="text_link" :href="item.link" v-html="'· '+item.title"></a>
+                            <a class="text_link" :href="item.url" v-html="'· '+item.title"></a>
                             <span class="sitename" v-html="item.siteName"></span>
                         </div>
                         <span class="details">查看详情</span>
