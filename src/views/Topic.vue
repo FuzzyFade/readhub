@@ -3,13 +3,15 @@
         <toolbar></toolbar>
         <v-container fluid grid-list-lg>
             <div style="height: 60px"></div>
-            <articles :title="item.title"
-                      :time="get_time(item.createdAt)"
-                      :detail="item.summary"
-                      :site_list="item.newsArray"
-                      v-for="item in info.data"
-                      :key="item.id"
-            ></articles>
+            <div>
+                <articles :title="item.title"
+                          :time="get_time(item.createdAt)"
+                          :detail="item.summary"
+                          :site_list="item.newsArray"
+                          v-for="item in info.data"
+                          :key="item.id"
+                ></articles>
+            </div>
             <backtop></backtop>
         </v-container>
     </v-app>
@@ -32,24 +34,33 @@
             info:'',
             request: {
                 lastCursor:'',
-                pageSize:13,
+                pageSize:20,
             }
         }),
+        created (){
+            window.addEventListener('scroll', this.get_scroll);
+        },
         mounted() {
-            console.log(document.body.offsetHeight);
             this.getArticleInfo();
         },
         methods:{
             getArticleInfo() {
                 axios
-                    .get('/api/topic?pageSize=' + this.request.pageSize+ '&lastCursor=' + this.request.lastCursor)
+                    .get('/api/topic?pageSize=' + this.request.pageSize + '&lastCursor=' + this.request.lastCursor)
                     .then(this.ArtInfoSucc)
             },
-            getArticleNext() {
+            get_scroll() {
+                let scroll = document.documentElement.scrollTop || document.body.scrollTop;
+                let height = document.documentElement.clientHeight ||document.body.clientHeight;
+
+            },
+            lazyload() {
+                let last_id = this.info.data[0].order;
                 axios
-                    .get('/api/topic/')
-                    .then(this.ArtInfoSucc)
+                    .get('/api/topic?pageSize=' + this.request.pageSize + '&lastCursor=' + last_id)
+
             },
+
             ArtInfoSucc(res) {
                 if (res){
                     this.info = res.data
@@ -57,6 +68,7 @@
                     console.log(404)
                 }
             },
+
             get_time(time) {
                 let d = new Date(time);
                 time = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();

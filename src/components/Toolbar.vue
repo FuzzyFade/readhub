@@ -20,7 +20,7 @@
 
 <script>
     export default {
-        name: 'HelloWorld',
+        name: 'Toolbar',
 
         data:() => ({
             topic_kinds:[{
