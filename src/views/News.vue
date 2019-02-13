@@ -1,7 +1,7 @@
 <template>
     <div>
         <articles :title="item.title"
-                  :time="get_time(item.createdAt)"
+                  :time="get_time(item.publishDate)"
                   :detail="item.summary"
                   :site_list="item.newsArray"
                   v-for="item in info"
@@ -13,14 +13,14 @@
 <script>
     import axios from 'axios'
     import { format } from 'timeago.js'
-    import Articles from '@/components/TopicArticles'
+    import Articles from '@/components/NewsArticles'
     export default {
         name: 'Topic',
         components: {
             Articles,
         },
         data:() => ({
-            api_path:'/api/topic',
+            api_path:'/api/news',
             info:[],
             request: {
                 lastCursor:'',
@@ -48,10 +48,9 @@
                     .catch(error => console.log(error))
             },
             get_data(res) {
-                if (res.status === 200) {
-                    this.info = this.info.concat(res.data.data);
-                    this.request.lastCursor = res.data.data[this.request.pageSize - 1].order
-                }
+                (res.status === 200)
+                && (this.info = this.info.concat(res.data.data))
+                && (this.request.lastCursor = res.data.data[this.request.pageSize - 1].order)
             },
             get_time(time) {
                 let d = new Date(time);

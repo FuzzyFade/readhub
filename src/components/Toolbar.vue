@@ -6,13 +6,13 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-            <v-btn flat
-                   v-for="item of topic_kinds"
-                   :key="item.id"
-                   v-html="item.content"
-                   @click="change(item.path)"
-            >
-            </v-btn>
+                <v-btn flat
+                       v-for="item of topic_kinds"
+                       :key="item.id"
+                       v-html="item.content"
+                       @click="change(item.path)"
+                >
+                </v-btn>
         </v-toolbar-items>
     </v-toolbar>
 </template>
@@ -29,7 +29,7 @@
             },{
                 id:"02",
                 content:"科技动态",
-                path:"/topic",
+                path:"/news",
             },{
                 id:"03",
                 content:"开发者资讯",
@@ -46,7 +46,7 @@
         }),
 
         methods: {
-            change: n => this.$router.push({path:n})
+            change (n) {this.$router.push(n)}
         }
     }
 </script>
