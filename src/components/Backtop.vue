@@ -38,8 +38,7 @@
             get_scroll() {
                 let scroll_top = document.documentElement.scrollTop || document.body.scrollTop;
                 let height = document.documentElement.clientHeight ||document.body.clientHeight;
-                scroll_top > height ? this.hidden = false
-                    : this.hidden = true
+                scroll_top > height ? this.hidden = false : this.hidden = true
 
             }
         }

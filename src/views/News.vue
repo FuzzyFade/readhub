@@ -3,7 +3,8 @@
         <articles :title="item.title"
                   :time="get_time(item.publishDate)"
                   :detail="item.summary"
-                  :site_list="item.newsArray"
+                  :link="item.url"
+                  :author_message="item.siteName +' '+ item.authorName"
                   v-for="item in info"
                   :key="item.id"
         ></articles>

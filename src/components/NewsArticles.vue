@@ -7,21 +7,15 @@
             >
                 <v-list>
                     <v-list-tile>
-                        <div class="tile" v-html="title"></div>
-                        <span class="timer" v-html="time"></span>
+                        <a class="tile" :href="link" target="_black" v-html="title"/>
                     </v-list-tile>
-                    <v-divider></v-divider>
+                    <v-divider/>
                     <div class="content">
-                        <span class="text" v-html="detail"></span>
+                        <span class="text" v-html="detail"/>
                     </div>
-                    <div class="link" v-if="show">
-                        <div class="little_title"
-                             v-for="item of site_list"
-                             :key="item.id"
-                        >
-                            <a class="text_link" :href="item.url" target="view_window" v-html="'· '+item.title"></a>
-                            <span class="sitename" v-html="item.siteName"></span>
-                        </div>
+                    <div>
+                        <span class="timer" v-html="author_message"/>
+                        <span class="timer" v-html="time"/>
                     </div>
                 </v-list>
             </v-card>
@@ -36,9 +30,10 @@
             title : String,
             time : String,
             detail : String,
-            site_list : Array,
+            author_message : String,
+            link : String,
         },
-        data:()=>({
+        data:() => ({
             show:false,
             clamp:3
         }),
@@ -56,12 +51,15 @@
     a
         text-decoration none
     .tile
+        color #2e2e2e
         max-width 100%
         overflow: hidden
         text-overflow:ellipsis
         white-space: nowrap;
         font-size 20px
         letter-spacing 1.2px
+    .tile:hover
+        color #8e9292
     .timer
         width:100px;
         color #7a7a7a
