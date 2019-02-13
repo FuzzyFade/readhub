@@ -1,34 +1,23 @@
 <template>
-    <v-app>
-        <toolbar></toolbar>
-        <v-container fluid grid-list-lg>
-            <div style="height: 60px"></div>
-            <div>
-                <articles :title="item.title"
-                          :time="get_time(item.createdAt)"
-                          :detail="item.summary"
-                          :site_list="item.newsArray"
-                          v-for="item in info"
-                          :key="item.id"
-                ></articles>
-            </div>
-            <backtop></backtop>
-        </v-container>
-    </v-app>
+    <div>
+        <articles :title="item.title"
+                  :time="get_time(item.createdAt)"
+                  :detail="item.summary"
+                  :site_list="item.newsArray"
+                  v-for="item in info"
+                  :key="item.id"
+        ></articles>
+    </div>
 </template>
 
 <script>
     import axios from 'axios'
     import { format } from 'timeago.js'
-    import Toolbar from '@/components/Toolbar.vue'
-    import Articles from '@/components/Articles.vue'
-    import Backtop from '@/components/Backtop.vue'
+    import Articles from '@/components/Articles'
     export default {
         name: 'Topic',
         components: {
-            Toolbar,
             Articles,
-            Backtop
         },
         data:() => ({
             api_path:'/api/topic',
@@ -61,7 +50,7 @@
             get_data(res) {
                 if (res.status === 200) {
                     this.info = this.info.concat(res.data.data);
-                    this.request.lastCursor = res.data.data[19].order
+                    this.request.lastCursor = res.data.data[this.request.pageSize - 1].order
                 }
             },
             get_time(time) {

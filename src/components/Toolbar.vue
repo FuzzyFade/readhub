@@ -10,8 +10,7 @@
                    v-for="item of topic_kinds"
                    :key="item.id"
                    v-html="item.content"
-                   @click="change(item.position)"
-                   :color="button_color(item.if_now)"
+                   @click="change(item.path)"
             >
             </v-btn>
         </v-toolbar-items>
@@ -26,42 +25,28 @@
             topic_kinds:[{
                 id:"01",
                 content:"热门话题",
-                position:"/topic",
-                if_now:true
+                path:"/topic",
             },{
                 id:"02",
                 content:"科技动态",
-                position:"/topic",
-                if_now:false
+                path:"/topic",
             },{
                 id:"03",
                 content:"开发者资讯",
-                position:"/topic",
-                if_now:false
+                path:"/topic",
             },{
                 id:"04",
                 content:"区块链快讯",
-                position:"/topic",
-                if_now:false
+                path:"/topic",
             },{
                 id:"05",
                 content:"招聘行情",
-                position:"/topic",
-                if_now:false
+                path:"/topic",
             }]
         }),
 
         methods: {
-            change(n) {
-                this.$router.push({path:n})
-            },
-            button_color(n) {
-                if (n){
-                    return "blue"
-                }else {
-                    return "#2e2e2e"
-                }
-            }
+            change: n => this.$router.push({path:n})
         }
     }
 </script>

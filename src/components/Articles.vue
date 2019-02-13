@@ -58,6 +58,8 @@
 </script>
 
 <style lang="stylus" scoped>
+    a
+        text-decoration none
     .tile
         max-width 100%
         overflow: hidden
