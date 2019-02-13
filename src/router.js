@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Topic from './views/Topic.vue'
 import News from './views/News.vue'
 import Tech from './views/Tech.vue'
+import Blockchain from './views/Blockchain.vue'
 
 Vue.use(Router);
 
@@ -33,6 +34,12 @@ const router = new Router({
             name: 'tech',
             meta: { title: 'Readhub - 开发者资讯' },
             component: Tech
+        },
+        {
+            path: '/blockchain',
+            name: 'blockchain',
+            meta: { title: 'Readhub - 区块链快讯' },
+            component: Blockchain
         },
 
     ]

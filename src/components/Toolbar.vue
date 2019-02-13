@@ -37,7 +37,7 @@
             },{
                 id:"04",
                 content:"区块链快讯",
-                path:"/topic",
+                path:"/blockchain",
             },{
                 id:"05",
                 content:"招聘行情",
