@@ -13,11 +13,13 @@ const router = new Router({
         {
             path:'/',
             name: 'homepage',
+            meta: { title: 'Readhub'},
             component:Topic
         },
         {
             path: '/topic',
             name: 'topic',
+            meta: { title: 'Readhub'},
             component: Topic
         },
         {
