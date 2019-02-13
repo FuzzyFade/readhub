@@ -51,7 +51,7 @@
             get_data(res) {
                 (res.status === 200)
                 && (this.info = this.info.concat(res.data.data))
-                && (this.request.lastCursor = res.data.data[this.request.pageSize - 1].order)
+                && (this.request.lastCursor = (new Date(res.data.data[this.request.pageSize - 1].publishDate)).getTime())
             },
             get_time(time) {
                 let d = new Date(time);

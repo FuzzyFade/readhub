@@ -3,7 +3,7 @@
         <v-hover>
             <v-card slot-scope="{ hover }"
                     :class="`elevation-${hover ? 12 : 2}`"
-                    max-width="100%"
+                    min-width="100%"
             >
                 <v-list>
                     <v-list-tile>
@@ -51,13 +51,13 @@
     a
         text-decoration none
     .tile
+        width 100%
         color #2e2e2e
-        max-width 100%
+        font-size 20px
+        letter-spacing 1.2px
         overflow: hidden
         text-overflow:ellipsis
         white-space: nowrap;
-        font-size 20px
-        letter-spacing 1.2px
     .tile:hover
         color #8e9292
     .timer

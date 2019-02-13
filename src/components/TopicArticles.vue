@@ -3,7 +3,7 @@
         <v-hover>
             <v-card slot-scope="{ hover }"
                     :class="`elevation-${hover ? 12 : 2}`"
-                    max-width="100%"
+                    min-width="100%"
             >
                 <v-list>
                     <v-list-tile>
