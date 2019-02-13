@@ -16,12 +16,12 @@
     import { format } from 'timeago.js'
     import Articles from '@/components/NewsArticles'
     export default {
-        name: 'News',
+        name: 'Tech',
         components: {
             Articles,
         },
         data:() => ({
-            api_path:'/api/news',
+            api_path:'/api/technews',
             info:[],
             request: {
                 lastCursor:'',

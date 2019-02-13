@@ -33,7 +33,7 @@
             },{
                 id:"03",
                 content:"开发者资讯",
-                path:"/topic",
+                path:"/tech",
             },{
                 id:"04",
                 content:"区块链快讯",

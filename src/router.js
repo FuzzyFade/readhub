@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Topic from './views/Topic.vue'
 import News from './views/News.vue'
+import Tech from './views/Tech.vue'
 
 Vue.use(Router);
 
@@ -25,6 +26,13 @@ const router = new Router({
             meta: { title: 'Readhub - 科技动态' },
             component: News
         },
+        {
+            path: '/tech',
+            name: 'tech',
+            meta: { title: 'Readhub - 开发者资讯' },
+            component: Tech
+        },
+
     ]
 });
 
