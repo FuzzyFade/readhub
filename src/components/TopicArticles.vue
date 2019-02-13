@@ -44,14 +44,10 @@
             clamp:3
         }),
         methods:{
-            show_text:function(){
-                if(this.show){
-                    this.clamp = 3;
-                    this.show = false
-                }else{
-                    this.clamp = 11;
-                    this.show = true
-                }
+            show_text (){
+                this.show ?
+                    (this.clamp = 3) && (this.show = false)
+                    : (this.clamp = 11) && (this.show = true)
             }
         },
     }
