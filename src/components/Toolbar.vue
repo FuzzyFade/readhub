@@ -6,13 +6,14 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-                <v-btn flat
-                       v-for="item of topic_kinds"
-                       :key="item.id"
-                       v-html="item.content"
-                       @click="change(item.path)"
-                >
-                </v-btn>
+            <v-btn flat
+                   v-for="item of topic_kinds"
+                   :key="item.id"
+                   :color="btn_color(item.path)"
+                   v-html="item.content"
+                   @click="change(item.path)"
+            >
+            </v-btn>
         </v-toolbar-items>
     </v-toolbar>
 </template>
@@ -22,6 +23,7 @@
         name: 'Toolbar',
 
         data:() => ({
+            picked : window.location.pathname ,
             topic_kinds:[{
                 id:"01",
                 content:"热门话题",
@@ -41,12 +43,17 @@
             },{
                 id:"05",
                 content:"招聘行情",
-                path:"/topic",
+                path:"/jobs",
             }]
         }),
-
         methods: {
-            change (n) {this.$router.push(n)}
+            change (n) {
+                this.$router.push(n);
+                this.picked = n
+            },
+            btn_color (n) {
+                 if (this.picked === n){return 'primary'}
+            }
         }
     }
 </script>

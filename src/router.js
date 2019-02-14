@@ -4,6 +4,7 @@ import Topic from './views/Topic.vue'
 import News from './views/News.vue'
 import Tech from './views/Tech.vue'
 import Blockchain from './views/Blockchain.vue'
+import Jobs from './views/Jobs.vue'
 
 Vue.use(Router);
 
@@ -13,9 +14,7 @@ const router = new Router({
     routes: [
         {
             path:'/',
-            name: 'homepage',
-            meta: { title: 'Readhub'},
-            component:Topic
+            redirect: '/topic'
         },
         {
             path: '/topic',
@@ -41,7 +40,12 @@ const router = new Router({
             meta: { title: 'Readhub - 区块链快讯' },
             component: Blockchain
         },
-
+        {
+            path: '/jobs',
+            name: 'jobs',
+            meta: { title: 'Readhub - 招聘行情' },
+            component: Jobs
+        },
     ]
 });
 

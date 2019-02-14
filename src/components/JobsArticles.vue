@@ -7,25 +7,13 @@
             >
                 <v-list>
                     <v-list-tile>
-                        <div class="tile" v-html="title"></div>
-                        <span class="timer" v-html="time"></span>
+                        <span class="tile" v-html="title"/>
                     </v-list-tile>
-                    <v-divider></v-divider>
-                    <div class="content" @click="show_text">
-                        <a class="text" :style="{'-webkit-line-clamp': clamp}" v-html="detail"></a>
+                    <div class="content">
+                        <span class="text" v-html="post(position)"/>
                     </div>
-                    <div class="link" v-if="show">
-                        <div class="little_title"
-                             v-for="item of site_list"
-                             :key="item.id"
-                        >
-                            <a class="text_link" :href="item.url" target="view_window" v-html="'· '+item.title"></a>
-                            <span class="sitename" v-html="item.siteName"></span>
-                        </div>
-                        <span class="details">
-                            查看详情
-                            <v-icon class="right">keyboard_arrow_right</v-icon>
-                        </span>
+                    <div>
+                        <span class="timer" v-html="author_message"/>
                     </div>
                 </v-list>
             </v-card>
@@ -35,22 +23,27 @@
 
 <script>
     export default {
-        name: "Articles",
+        name: "JobsArticles",
         props: {
             title : String,
-            time : String,
-            detail : String,
-            site_list : Array,
+            position : Array,
+            author_message : String,
+            link : String,
         },
-        data:()=>({
+        data:() => ({
             show:false,
-            clamp:3
         }),
         methods:{
             show_text (){
                 this.show ?
-                    (this.clamp = 3) && (this.show = false)
-                    : (this.clamp = 11) && (this.show = true)
+                (this.clamp = 3) && (this.show = false)
+                : (this.clamp = 11) && (this.show = true)
+            },
+            post (n){
+                var pso;
+                for (let i in n){
+                    return pso +=  i.title
+                }
             }
         },
     }
@@ -60,12 +53,14 @@
     a
         text-decoration none
     .tile
-        max-width 100%
+        width 100%
+        color #2e2e2e
+        font-size 17px
+        letter-spacing 1.2px
+        font-weight: 500
         overflow: hidden
         text-overflow:ellipsis
         white-space: nowrap;
-        font-size 20px
-        letter-spacing 1.2px
     .timer
         width:100px;
         color #7a7a7a
@@ -84,8 +79,6 @@
             display: -webkit-box
             -webkit-line-clamp: 3
             -webkit-box-orient: vertical
-        .text:hover
-            color #000
     .link
         padding 14px 16px 16px 16px
         .little_title
@@ -96,8 +89,6 @@
                 color rgba(0, 0, 0, 1)
                 letter-spacing 1.3px
                 font-size 14px
-            .text_link:hover
-                color #5e788f
             .sitename
                 display inline-block
                 color #a9a9a9
@@ -113,7 +104,5 @@
             margin-bottom 12px
             font-weight 400
             font-size 14px
-            .right
-                font-size 20px
 
 </style>
