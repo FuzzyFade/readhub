@@ -1,8 +1,7 @@
 <template>
     <div>
         <articles :title="item.jobTitle"
-                  :position="item.jobsArray"
-                  :site_list="item.newsArray"
+                  :need_list="item.jobsArray"
                   v-for="item in info"
                   :key="item.id"
         ></articles>

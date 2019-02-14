@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <v-app>
-            <toolbar/>
+            <router-view name="toolbar"/>
             <v-container fluid grid-list-lg>
                 <div style="height: 60px"></div>
                 <router-view/>

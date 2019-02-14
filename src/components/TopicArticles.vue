@@ -7,19 +7,19 @@
             >
                 <v-list>
                     <v-list-tile>
-                        <div class="tile" v-html="title"></div>
+                        <div class="tile" v-html="insr(title)"></div>
                         <span class="timer" v-html="time"></span>
                     </v-list-tile>
                     <v-divider></v-divider>
                     <div class="content" @click="show_text">
-                        <a class="text" :style="{'-webkit-line-clamp': clamp}" v-html="detail"></a>
+                        <a class="text" :style="{'-webkit-line-clamp': clamp}" v-html="insr(detail)"></a>
                     </div>
                     <div class="link" v-if="show">
                         <div class="little_title"
                              v-for="item of site_list"
                              :key="item.id"
                         >
-                            <a class="text_link" :href="item.url" target="view_window" v-html="'· '+item.title"></a>
+                            <a class="text_link" :href="item.url" target="view_window" v-html="'· '+insr(item.title)"></a>
                             <span class="sitename" v-html="item.siteName"></span>
                         </div>
                         <span class="details">
@@ -51,6 +51,11 @@
                 this.show ?
                     (this.clamp = 3) && (this.show = false)
                     : (this.clamp = 11) && (this.show = true)
+            },
+            insr (str){
+                let p1=/([A-Za-z_])([\u4e00-\u9fa5]+)/gi;
+                let p2=/([\u4e00-\u9fa5]+)([A-Za-z_])/gi;
+                return str.replace(p1, "$1 $2").replace(p2, "$1 $2")
             }
         },
     }

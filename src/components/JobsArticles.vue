@@ -7,14 +7,11 @@
             >
                 <v-list>
                     <v-list-tile>
-                        <span class="tile" v-html="title"/>
+                        <span class="tile" v-html="insr(title)"/>
                     </v-list-tile>
-                    <div class="content">
-                        <span class="text" v-html="post(position)"/>
-                    </div>
-                    <div>
-                        <span class="timer" v-html="author_message"/>
-                    </div>
+                    <v-list-tile>
+                        <span class="text" v-html="insr(post(need_list))"/>
+                    </v-list-tile>
                 </v-list>
             </v-card>
         </v-hover>
@@ -26,11 +23,10 @@
         name: "JobsArticles",
         props: {
             title : String,
-            position : Array,
-            author_message : String,
-            link : String,
+            need_list : Array,
         },
         data:() => ({
+            position:'',
             show:false,
         }),
         methods:{
@@ -40,10 +36,13 @@
                 : (this.clamp = 11) && (this.show = true)
             },
             post (n){
-                var pso;
-                for (let i in n){
-                    return pso +=  i.title
-                }
+                this.position = n[0].title + '·' + n[1].title + '·' + n[2].title + '·' + n[3].title
+                return this.position
+            },
+            insr (str){
+                let p1=/([A-Za-z_])([\u4e00-\u9fa5]+)/gi;
+                let p2=/([\u4e00-\u9fa5]+)([A-Za-z_])/gi;
+                return str.replace(p1, "$1 $2").replace(p2, "$1 $2")
             }
         },
     }
@@ -61,48 +60,14 @@
         overflow: hidden
         text-overflow:ellipsis
         white-space: nowrap;
-    .timer
-        width:100px;
-        color #7a7a7a
-        letter-spacing .6px
-        margin-left 19px
-        font-weight 400
-        font-size 14px
-    .content
-        padding 10px 16px 10px 16px
-        .text
-            font-size 15px
-            color #515151
-            letter-spacing 2.1px
-            overflow: hidden
-            text-overflow: ellipsis
-            display: -webkit-box
-            -webkit-line-clamp: 3
-            -webkit-box-orient: vertical
-    .link
-        padding 14px 16px 16px 16px
-        .little_title
-            overflow hidden
-            max-width 100%
-            margin-bottom  8px
-            .text_link
-                color rgba(0, 0, 0, 1)
-                letter-spacing 1.3px
-                font-size 14px
-            .sitename
-                display inline-block
-                color #a9a9a9
-                letter-spacing 1px
-                margin-left 15px
-                font-weight 400
-                font-size 14px
-        .details
-            float right
-            color #303030
-            letter-spacing 1px
-            margin-left 15px
-            margin-bottom 12px
-            font-weight 400
-            font-size 14px
+    .text
+        font-size 15px
+        color #6c6c6c
+        letter-spacing 2px
+        overflow: hidden
+        text-overflow: ellipsis
+        display: -webkit-box
+        -webkit-line-clamp: 3
+        -webkit-box-orient: vertical
 
 </style>

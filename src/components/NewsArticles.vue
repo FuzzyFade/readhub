@@ -11,10 +11,10 @@
                     </v-list-tile>
                     <v-divider/>
                     <div class="content">
-                        <span class="text" v-html="detail"/>
+                        <span class="text" v-html="insr(detail)"/>
                     </div>
                     <div>
-                        <span class="timer" v-html="author_message"/>
+                        <span class="timer" v-html="insr(author_message)"/>
                         <span class="timer" v-html="time"/>
                     </div>
                 </v-list>
@@ -42,6 +42,11 @@
                 this.show ?
                 (this.clamp = 3) && (this.show = false)
                 : (this.clamp = 11) && (this.show = true)
+            },
+            insr (str){
+                let p1=/([A-Za-z_])([\u4e00-\u9fa5]+)/gi;
+                let p2=/([\u4e00-\u9fa5]+)([A-Za-z_])/gi;
+                return str.replace(p1, "$1 $2").replace(p2, "$1 $2")
             }
         },
     }
