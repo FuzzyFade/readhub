@@ -53,11 +53,10 @@
                     .catch(error => console.log(error))
             },
             get_data(res) {
-                if (res.status === 200) {
-                    this.info = this.info.concat(res.data.data);
-                    this.request.lastCursor = res.data.data[this.request.pageSize - 1].order;
-                    this.hidden = true
-                }
+                (res.status === 200)
+                && (this.info = this.info.concat(res.data.data))
+                && (this.request.lastCursor = res.data.data[this.request.pageSize - 1].order)
+                && (this.hidden = true)
             },
             get_time(time) {
                 let d = new Date(time);
