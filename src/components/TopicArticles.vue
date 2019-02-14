@@ -22,7 +22,7 @@
                             <a class="text_link" :href="item.url" target="view_window" v-html="'· '+item.title"></a>
                             <span class="sitename" v-html="item.siteName"></span>
                         </div>
-                        <span class="details">查看详情</span>
+                        <span class="details">查看详情<v-icon>keyboard_arrow_right</v-icon></span>
                     </div>
                 </v-list>
             </v-card>

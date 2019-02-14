@@ -7,6 +7,9 @@
                   v-for="item in info"
                   :key="item.id"
         ></articles>
+        <div class="loading" v-show="!hidden">
+            <v-progress-circular indeterminate color="primary"/>
+        </div>
     </div>
 </template>
 
@@ -20,6 +23,7 @@
             Articles,
         },
         data:() => ({
+            hidden:true,
             api_path:'/api/topic',
             info:[],
             request: {
@@ -42,6 +46,7 @@
                 scroll_top + height === scroll_height && this.get_article_info()
             },
             get_article_info() {
+                this.hidden = false;
                 axios
                     .get(this.api_path + '?' + 'pageSize=' + this.request.pageSize + '&lastCursor=' + this.request.lastCursor)
                     .then(this.get_data)
@@ -50,7 +55,8 @@
             get_data(res) {
                 if (res.status === 200) {
                     this.info = this.info.concat(res.data.data);
-                    this.request.lastCursor = res.data.data[this.request.pageSize - 1].order
+                    this.request.lastCursor = res.data.data[this.request.pageSize - 1].order;
+                    this.hidden = true
                 }
             },
             get_time(time) {
@@ -63,4 +69,6 @@
 </script>
 
 <style lang="stylus" scoped>
+    .loading
+        text-align center
 </style>
