@@ -7,14 +7,14 @@
             >
                 <v-list>
                     <v-list-tile>
-                        <a class="tile" :href="link" target="_black" v-html="title"/>
+                        <a class="tile" :href="link" target="_black" v-html="insr(title)"/>
                     </v-list-tile>
                     <v-divider/>
                     <div class="content">
                         <span class="text" v-html="insr(detail)"/>
                     </div>
                     <div>
-                        <span class="timer" v-html="insr(author_message)"/>
+                        <span class="timer" v-html="author_message"/>
                         <span class="timer" v-html="time"/>
                     </div>
                 </v-list>

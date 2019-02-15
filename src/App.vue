@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <v-app>
+            <router-view name="error"/>
             <router-view name="toolbar"/>
             <v-container fluid grid-list-lg>
                 <div style="height: 60px"></div>

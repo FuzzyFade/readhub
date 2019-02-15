@@ -1,13 +1,20 @@
 <template>
     <div>
         <articles :title="item.jobTitle"
-                  :need_list="item.jobsArray"
+                  :num_list="item.jobsArray"
+                  :cities="item.cities"
+                  :jobCount="item.jobCount"
+                  :salaryLower="item.salaryLower"
+                  :salaryUpper="item.salaryUpper"
+                  :experienceLower="item.experienceLower"
+                  :experienceUpper="item.experienceUpper"
                   v-for="item in info"
                   :key="item.id"
         ></articles>
         <div class="loading" v-show="!hidden">
             <v-progress-circular indeterminate color="primary"/>
         </div>
+
     </div>
 </template>
 
@@ -53,7 +60,7 @@
             get_data(res) {
                 (res.status === 200)
                 && (this.info = this.info.concat(res.data.data))
-                && (this.request.lastCursor = res.data.data[this.request.pageSize - 1].order)
+                && (this.request.lastCursor = (new Date(res.data.data[this.request.pageSize - 1].publishDate)).getTime())
                 && (this.hidden = true)
             },
             get_time(time) {

@@ -6,6 +6,7 @@ import Tech from './views/Tech.vue'
 import Blockchain from './views/Blockchain.vue'
 import Jobs from './views/Jobs.vue'
 import Toolbar from "@/components/Toolbar";
+import Error from  '@/views/Error'
 
 Vue.use(Router);
 
@@ -63,9 +64,11 @@ const router = new Router({
             }
         },{
             path: '*',
-            name: '404',
-            meta: { title: '404找不到页面'},
-            component: 404,
+            name: 'error',
+            meta: { title: '404-找不到页面'},
+            components: {
+                error:Error
+            },
         }
     ]
 });

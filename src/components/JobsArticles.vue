@@ -10,7 +10,10 @@
                         <span class="tile" v-html="insr(title)"/>
                     </v-list-tile>
                     <v-list-tile>
-                        <span class="text" v-html="insr(post(need_list))"/>
+                        <span class="text1" v-html="insr(post(num_list))"/>
+                    </v-list-tile>
+                    <v-list-tile>
+                        <span class="text2" v-html="need(cities,jobCount,salaryLower,salaryUpper,experienceLower,experienceUpper)"/>
                     </v-list-tile>
                 </v-list>
             </v-card>
@@ -23,18 +26,19 @@
         name: "JobsArticles",
         props: {
             title : String,
-            need_list : Array,
+            num_list : Array,
+            cities: Object,
+            jobCount: Number,
+            salaryLower: Number,
+            salaryUpper: Number,
+            experienceLower: Number,
+            experienceUpper: Number
         },
         data:() => ({
             position:'',
             show:false,
         }),
         methods:{
-            show_text (){
-                this.show ?
-                (this.clamp = 3) && (this.show = false)
-                : (this.clamp = 11) && (this.show = true)
-            },
             post (n){
                 this.position = n[0].title + '·' + n[1].title + '·' + n[2].title + '·' + n[3].title
                 return this.position
@@ -43,6 +47,10 @@
                 let p1=/([A-Za-z_])([\u4e00-\u9fa5]+)/gi;
                 let p2=/([\u4e00-\u9fa5]+)([A-Za-z_])/gi;
                 return str.replace(p1, "$1 $2").replace(p2, "$1 $2")
+            },
+            need (cities,jobCount,salaryLower,salaryUpper,experienceLower,experienceUpper){
+                let str = cities + '等地共更新了 ' + jobCount + ' 个职位，待遇集中在 ' + salaryLower + '-' + salaryUpper + 'k，一般要求 ' + experienceLower +'-' + experienceUpper +' 年工作经验';
+                return str
             }
         },
     }
@@ -60,14 +68,24 @@
         overflow: hidden
         text-overflow:ellipsis
         white-space: nowrap;
-    .text
+    .text1
         font-size 15px
-        color #6c6c6c
-        letter-spacing 2px
+        color #676767
+        letter-spacing 1.4px
         overflow: hidden
         text-overflow: ellipsis
         display: -webkit-box
-        -webkit-line-clamp: 3
+        -webkit-line-clamp: 1
+        -webkit-box-orient: vertical
+    .text2
+        font-size 15px
+        font-weight: 500
+        color #434343
+        letter-spacing 1px
+        overflow: hidden
+        text-overflow: ellipsis
+        display: -webkit-box
+        -webkit-line-clamp: 1
         -webkit-box-orient: vertical
 
 </style>
