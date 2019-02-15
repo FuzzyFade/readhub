@@ -27,7 +27,7 @@
         props: {
             title : String,
             num_list : Array,
-            cities: Object,
+            cities: Array,
             jobCount: Number,
             salaryLower: Number,
             salaryUpper: Number,
@@ -49,7 +49,7 @@
                 return str.replace(p1, "$1 $2").replace(p2, "$1 $2")
             },
             need (cities,jobCount,salaryLower,salaryUpper,experienceLower,experienceUpper){
-                let str = cities + '等地共更新了 ' + jobCount + ' 个职位，待遇集中在 ' + salaryLower + '-' + salaryUpper + 'k，一般要求 ' + experienceLower +'-' + experienceUpper +' 年工作经验';
+                let str = cities[0] + '、' + cities[1] + '等地共更新了 ' + jobCount + ' 个职位，待遇集中在 ' + salaryLower + '-' + salaryUpper + 'k，一般要求 ' + experienceLower +'-' + experienceUpper +' 年工作经验';
                 return str
             }
         },

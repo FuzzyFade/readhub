@@ -1,16 +1,20 @@
 <template>
     <div>
-        <articles :title="item.jobTitle"
-                  :num_list="item.jobsArray"
-                  :cities="item.cities"
-                  :jobCount="item.jobCount"
-                  :salaryLower="item.salaryLower"
-                  :salaryUpper="item.salaryUpper"
-                  :experienceLower="item.experienceLower"
-                  :experienceUpper="item.experienceUpper"
-                  v-for="item in info"
-                  :key="item.id"
-        ></articles>
+        <div v-for="item in info"
+             :key="item.id"
+        >
+            <div>
+            </div>
+            <articles :title="item.jobTitle"
+                      :num_list="item.jobsArray"
+                      :cities="city(item.cities)"
+                      :jobCount="item.jobCount"
+                      :salaryLower="item.salaryLower"
+                      :salaryUpper="item.salaryUpper"
+                      :experienceLower="item.experienceLower"
+                      :experienceUpper="item.experienceUpper"
+            ></articles>
+        </div>
         <div class="loading" v-show="!hidden">
             <v-progress-circular indeterminate color="primary"/>
         </div>
@@ -67,6 +71,17 @@
                 let d = new Date(time);
                 time = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
                 return format(time,'zh_CN');
+            },
+            city(obj) {
+                let arr = [];
+                for(let key in obj){
+                    arr.push(key)
+                }
+                return arr
+            },
+            day(art_time) {
+                let myDate = new Date();
+
             }
         },
     }
