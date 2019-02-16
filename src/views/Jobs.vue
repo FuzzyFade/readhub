@@ -1,11 +1,14 @@
 <template>
     <div>
-        <div v-for="item in info"
-             :key="item.id"
+        <div v-for="(item ,index) in info"
+             :key="index"
         >
-            <div>
-            </div>
-            <articles :title="item.jobTitle"
+            <v-subheader>
+                <span class="date">{{day(item.publishDate)}}</span>
+            </v-subheader>
+            <articles
+
+                      :title="item.jobTitle"
                       :num_list="item.jobsArray"
                       :cities="city(item.cities)"
                       :jobCount="item.jobCount"
@@ -18,7 +21,6 @@
         <div class="loading" v-show="!hidden">
             <v-progress-circular indeterminate color="primary"/>
         </div>
-
     </div>
 </template>
 
@@ -32,12 +34,14 @@
             Articles,
         },
         data:() => ({
+            header:'',
+            time:'',
             hidden:true,
             api_path:'/api/jobs',
             info:[],
             request: {
                 lastCursor:'',
-                pageSize:20,
+                pageSize:10,
             },
         }),
         mounted () {
@@ -81,7 +85,35 @@
             },
             day(art_time) {
                 let myDate = new Date();
+                let y = myDate.getFullYear();
+                let m = myDate.getMonth();
+                let d = myDate.getDate();
 
+                let this_time = new Date(art_time);
+                let ty = this_time.getFullYear();
+                let tm = this_time.getMonth();
+                let td = this_time.getDate() + 1;
+
+                let result = ty + '年' + (tm + 1) + '月' + td + '日';
+
+                y === ty && m === tm && d === td && (result = '今天');
+                y === ty && m === tm && d - 1 === td && (result = '昨天');
+
+                return result
+            },
+            remix(data_json) {
+                let result = {};
+                let header;
+                for (let i in data_json){
+                    header = this.day(i.createdAt);
+                    if (result.hasOwnProperty(header)){
+                        result[header].add(i)
+                    }else {
+                        let name = header;
+                        result[name] = {}
+                    }
+                };
+                console.log(result)
             }
         },
     }
@@ -90,4 +122,6 @@
 <style lang="stylus" scoped>
     .loading
         text-align center
+    .date
+        font-size 23px
 </style>
