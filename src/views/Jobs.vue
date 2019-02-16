@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div v-for="(item ,index) in info"
-             :key="index"
+        <div v-for="ele in remix(info)"
         >
             <v-subheader>
-                <span class="date">{{day(item.publishDate)}}</span>
+                <span class="date" v-html="ele.time"></span>
             </v-subheader>
-            <articles
+            <articles v-for="item in ele.data"
+                      :key="item.id"
 
                       :title="item.jobTitle"
                       :num_list="item.jobsArray"
@@ -44,7 +44,7 @@
                 pageSize:10,
             },
         }),
-        mounted () {
+        created () {
             this.get_article_info();
             window.addEventListener('scroll', this.get_scroll);
         },
@@ -101,19 +101,36 @@
 
                 return result
             },
-            remix(data_json) {
-                let result = {};
-                let header;
-                for (let i in data_json){
-                    header = this.day(i.createdAt);
-                    if (result.hasOwnProperty(header)){
-                        result[header].add(i)
-                    }else {
-                        let name = header;
-                        result[name] = {}
-                    }
+            remix(info) {
+                let arr = [];
+                for (let i=0;i<info.length;i++){
+                    arr.push({
+                        time:this.day(info[i].publishDate),
+                        data:info[i]
+                    })
+                }
+                const map = function(arr) {
+                    let newArr = [];
+                    arr.forEach((address , i) => {
+                        let index = -1;
+                        let alreadyExists = newArr.some((newAddress,j) => {
+                            if (address.time === newAddress.time) {
+                                index = j;
+                                return true;
+                            }
+                        });
+                        if (!alreadyExists){
+                            newArr.push({
+                                time:address.time,
+                                data:[address.data]
+                            });
+                        }else {
+                            newArr[index].data.push(address.data)
+                        }
+                    });
+                    return newArr;
                 };
-                console.log(result)
+                return map(arr)
             }
         },
     }
