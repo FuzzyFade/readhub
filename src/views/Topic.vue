@@ -4,6 +4,7 @@
                   :time="get_time(item.createdAt)"
                   :detail="item.summary"
                   :site_list="item.newsArray"
+                  :detail_page="item.id"
                   v-for="item in info"
                   :key="item.id"
         ></articles>

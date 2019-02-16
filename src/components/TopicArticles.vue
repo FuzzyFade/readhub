@@ -7,25 +7,40 @@
             >
                 <v-list>
                     <v-list-tile>
-                        <div class="tile" v-html="insr(title)"></div>
+                        <a target="_black"
+                           :href="'/topic/'+ detail_page"
+                           class="tile"
+                           v-html="insr(title)"
+                        ></a>
                         <span class="timer" v-html="time"></span>
                     </v-list-tile>
                     <v-divider></v-divider>
-                    <div class="content" @click="show_text">
-                        <a class="text" :style="{'-webkit-line-clamp': clamp}" v-html="insr(detail)"></a>
+                    <div class="content"
+                         @click="show_text">
+                        <a class="text"
+                           :style="{'-webkit-line-clamp': clamp}"
+                           v-html="insr(detail)"
+                        ></a>
                     </div>
                     <div class="link" v-if="show">
                         <div class="little_title"
                              v-for="item of site_list"
                              :key="item.id"
                         >
-                            <a class="text_link" :href="item.url" target="view_window" v-html="'· '+insr(item.title)"></a>
+                            <a class="text_link"
+                               :href="item.url"
+                               target="view_window"
+                               v-html="'· '+insr(item.title)"
+                            ></a>
                             <span class="sitename" v-html="item.siteName"></span>
                         </div>
-                        <span class="details">
+                        <a :to="detail_page"
+                           :href="'/topic/'+ detail_page"
+                           class="details"
+                           target="_black">
                             查看详情
                             <v-icon class="right">keyboard_arrow_right</v-icon>
-                        </span>
+                        </a>
                     </div>
                 </v-list>
             </v-card>
@@ -41,6 +56,7 @@
             time : String,
             detail : String,
             site_list : Array,
+            detail_page : String
         },
         data:()=>({
             show:false,
@@ -56,7 +72,7 @@
                 let p1=/([A-Za-z_])([\u4e00-\u9fa5]+)/gi;
                 let p2=/([\u4e00-\u9fa5]+)([A-Za-z_])/gi;
                 return str.replace(p1, "$1 $2").replace(p2, "$1 $2")
-            }
+            },
         },
     }
 </script>
@@ -65,6 +81,7 @@
     a
         text-decoration none
     .tile
+        color #2e2e2e
         max-width 100%
         overflow: hidden
         text-overflow:ellipsis

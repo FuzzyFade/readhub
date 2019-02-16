@@ -5,8 +5,9 @@ import News from './views/News.vue'
 import Tech from './views/Tech.vue'
 import Blockchain from './views/Blockchain.vue'
 import Jobs from './views/Jobs.vue'
-import Toolbar from "@/components/Toolbar";
+import Toolbar from "@/components/Toolbar"
 import Error from  '@/views/Error'
+import Details from  '@/views/Details'
 
 Vue.use(Router);
 
@@ -63,13 +64,20 @@ const router = new Router({
                 toolbar:Toolbar
             }
         },{
+            path: '/topic/:id',
+            name: 'details',
+            components: {
+                default:Details,
+                toolbar:Toolbar
+            }
+        },{
             path: '*',
             name: 'error',
             meta: { title: '404-找不到页面'},
             components: {
                 error:Error
             },
-        }
+        },
     ]
 });
 
