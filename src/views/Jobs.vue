@@ -2,9 +2,9 @@
     <div>
         <div v-for="ele in remix(info)"
         >
-            <v-subheader>
-                <span class="date" v-html="ele.time"></span>
-            </v-subheader>
+            <div class="date">
+                <span v-html="ele.time"></span>
+            </div>
             <articles v-for="item in ele.data"
                       :key="item.id"
 
@@ -16,6 +16,7 @@
                       :salaryUpper="item.salaryUpper"
                       :experienceLower="item.experienceLower"
                       :experienceUpper="item.experienceUpper"
+                      :jobsArray="item.jobsArray"
             ></articles>
         </div>
         <div class="loading" v-show="!hidden">
@@ -140,5 +141,8 @@
     .loading
         text-align center
     .date
-        font-size 23px
+        font-size 26px
+        font-weight 500
+        color #757575
+        padding-bottom 10px
 </style>
