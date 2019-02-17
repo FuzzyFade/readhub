@@ -1,23 +1,31 @@
 <template>
     <div>
-        <div v-for="ele in remix(info)"
-        >
-            <div class="date">
-                <span v-html="ele.time"></span>
-            </div>
-            <articles v-for="item in ele.data"
-                      :key="item.id"
+        <div style="display: flex;">
+            <div style="width:100%;">
+                <div v-for="(ele,index) in remix(info)"
+                     :key="index"
+                >
+                    <div class="date">
+                        <span v-html="ele.time"></span>
+                    </div>
+                    <articles v-for="(item,index) in ele.data"
+                              :key="index"
 
-                      :title="item.jobTitle"
-                      :num_list="item.jobsArray"
-                      :cities="city(item.cities)"
-                      :jobCount="item.jobCount"
-                      :salaryLower="item.salaryLower"
-                      :salaryUpper="item.salaryUpper"
-                      :experienceLower="item.experienceLower"
-                      :experienceUpper="item.experienceUpper"
-                      :jobsArray="item.jobsArray"
-            ></articles>
+                              :title="item.jobTitle"
+                              :num_list="item.jobsArray"
+                              :cities="city(item.cities)"
+                              :jobCount="item.jobCount"
+                              :salaryLower="item.salaryLower"
+                              :salaryUpper="item.salaryUpper"
+                              :experienceLower="item.experienceLower"
+                              :experienceUpper="item.experienceUpper"
+                              :jobsArray="item.jobsArray"
+                    ></articles>
+                </div>
+            </div>
+            <brief
+            >
+            </brief>
         </div>
         <div class="loading" v-show="!hidden">
             <v-progress-circular indeterminate color="primary"/>
@@ -29,10 +37,12 @@
     import axios from 'axios'
     import { format } from 'timeago.js'
     import Articles from '@/components/JobsArticles'
+    import Brief from  '@/components/Brief'
     export default {
         name: 'Topic',
         components: {
             Articles,
+            Brief
         },
         data:() => ({
             header:'',

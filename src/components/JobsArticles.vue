@@ -3,7 +3,7 @@
         <v-hover>
             <v-card slot-scope="{ hover }"
                     :class="`elevation-${hover ? 12 : 2}`"
-                    min-width="100%"
+                    max-width="636px"
                     style="border-radius: 11px;cursor:pointer"
             >
                 <v-list>
