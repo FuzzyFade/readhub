@@ -5,7 +5,9 @@
             <router-view name="toolbar"/>
             <v-container fluid grid-list-lg>
                 <div style="height: 60px"></div>
-                <router-view/>
+                <div style="margin: 0 115px">
+                    <router-view/>
+                </div>
                 <backtop/>
             </v-container>
         </v-app>
