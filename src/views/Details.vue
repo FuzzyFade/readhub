@@ -3,7 +3,16 @@
         <div class="loading" v-show="false">
             <v-progress-circular indeterminate color="primary"/>
         </div>
-        <div>{{info}}</div>
+        <div>
+            <v-list>
+                <v-list-tile>
+                    {{insr(info.title)}}
+                </v-list-tile>
+                <v-list-tile>
+                    {{get_time(info.createdAt)}}
+                </v-list-tile>
+            </v-list>
+        </div>
     </div>
 </template>
 
@@ -12,12 +21,7 @@
     import { format } from 'timeago.js'
     export default {
         name: "Details",
-        props: {
-            id : String,
-        },
-        beforeCreated() {
-            this.change_title(this.id)
-        },
+
         data:() => ({
             hidden : false,
             api_path:'/api' + window.location.pathname,
@@ -40,7 +44,13 @@
             get_data(res) {
                 (res.status === 200)
                 && (this.info = res.data)
+                && this.change_title(this.info.title)
                 && (this.hidden = true)
+            },
+            get_time(time) {
+                let d = new Date(time);
+                time = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+                return format(time,'zh_CN');
             },
             insr (str){
                 let p1=/([A-Za-z_])([\u4e00-\u9fa5]+)/gi;
