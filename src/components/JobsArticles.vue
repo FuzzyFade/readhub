@@ -4,6 +4,7 @@
             <v-card slot-scope="{ hover }"
                     :class="`elevation-${hover ? 12 : 2}`"
                     min-width="100%"
+                    style="border-radius: 11px"
             >
                 <v-list>
                     <v-list-tile>

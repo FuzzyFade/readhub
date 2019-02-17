@@ -4,6 +4,7 @@
             <v-card slot-scope="{ hover }"
                     :class="`elevation-${hover ? 12 : 2}`"
                     min-width="100%"
+                    style="border-radius:11px"
             >
                 <v-list>
                     <v-list-tile>
@@ -56,6 +57,7 @@
     a
         text-decoration none
     .tile
+        font-weight 500
         width 100%
         color #2e2e2e
         font-size 20px
@@ -77,7 +79,7 @@
         .text
             font-size 15px
             color #515151
-            letter-spacing 2.1px
+            letter-spacing 1.5px
             overflow: hidden
             text-overflow: ellipsis
             display: -webkit-box
