@@ -151,8 +151,8 @@
     .loading
         text-align center
     .date
-        font-size 26px
+        font-size 33px
         font-weight 500
-        color #757575
+        color #505050
         padding-bottom 10px
 </style>
