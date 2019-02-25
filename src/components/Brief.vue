@@ -9,7 +9,7 @@
                     <div v-for="(ele, index) in remix(info)"
                          :key="index"
                     >
-                        <v-card class="card">
+                        <v-card class="card" max-width="500px">
                             <div class="content">
                                 <div class="date">
                                     <span v-html="date_filter(ele.time)"></span>
